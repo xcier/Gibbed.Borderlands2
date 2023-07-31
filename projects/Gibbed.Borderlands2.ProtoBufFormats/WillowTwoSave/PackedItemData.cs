@@ -21,6 +21,8 @@
  */
 
 using System.ComponentModel;
+using System.Diagnostics;
+
 using ProtoBuf;
 
 namespace Gibbed.Borderlands2.ProtoBufFormats.WillowTwoSave

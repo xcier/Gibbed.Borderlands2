@@ -20,6 +20,7 @@
  *    distribution.
  */
 
+using System;
 using System.ComponentModel;
 using ProtoBuf;
 

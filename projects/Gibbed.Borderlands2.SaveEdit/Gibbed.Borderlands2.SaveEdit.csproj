@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFramework>net47</TargetFramework>
     <AssemblyTitle>Gibbed's Borderlands 2 Save Editor</AssemblyTitle>
     <Company>Gibbed</Company>
     <Authors>Gibbed</Authors>
@@ -53,6 +53,7 @@
     <Resource Include="Resources\assaultrifle.png" />
     <Resource Include="Resources\backpack.png" />
     <Resource Include="Resources\bank.png" />
+    <Resource Include="Resources\reward.png" />
     <Resource Include="Resources\credits cropped.png" />
     <Resource Include="Resources\credits.png" />
     <Resource Include="Resources\eridium.png" />

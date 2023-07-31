@@ -31,8 +31,13 @@ using System.Windows.Input;
 using Caliburn.Micro;
 using Caliburn.Micro.Contrib;
 using Caliburn.Micro.Contrib.Results;
+
+using Gibbed.Borderlands2.FileFormats;
 using Gibbed.Borderlands2.GameInfo;
 using Gibbed.Gearbox.WPF;
+
+using Newtonsoft.Json;
+
 using DeserializeSettings = Gibbed.Borderlands2.FileFormats.SaveFile.DeserializeSettings;
 using GameGuid = Gibbed.Borderlands2.ProtoBufFormats.WillowTwoSave.Guid;
 using SaveFile = Gibbed.Borderlands2.FileFormats.SaveFile;
@@ -50,6 +55,7 @@ namespace Gibbed.Borderlands2.SaveEdit
         private CurrencyOnHandViewModel _CurrencyOnHand;
         private BackpackViewModel _Backpack;
         private BankViewModel _Bank;
+        private RewardViewModel _Reward;
         private FastTravelViewModel _FastTravel;
         private AboutViewModel _About;
 
@@ -122,6 +128,17 @@ namespace Gibbed.Borderlands2.SaveEdit
             {
                 this._Bank = value;
                 this.NotifyOfPropertyChange(nameof(Bank));
+            }
+        }
+
+        [Import(typeof(RewardViewModel))]
+        public RewardViewModel Reward
+        {
+            get { return _Reward; }
+            set
+            {
+                this._Reward = value;
+                this.NotifyOfPropertyChange(nameof(Reward));
             }
         }
 
@@ -293,6 +310,7 @@ namespace Gibbed.Borderlands2.SaveEdit
             this.CurrencyOnHand.ImportData(saveFile.SaveGame);
             this.Backpack.ImportData(saveFile.SaveGame, saveFile.Platform);
             this.Bank.ImportData(saveFile.SaveGame, saveFile.Platform);
+            this.Reward.ImportData(saveFile.SaveGame, saveFile.Platform);
             this.FastTravel.ImportData(saveFile.SaveGame);
             this.SavePath = null;
             this.SaveFile = saveFile;
@@ -348,9 +366,17 @@ namespace Gibbed.Borderlands2.SaveEdit
             yield return new DelegateResult(
                 () =>
                 {
-                    using (var input = File.OpenRead(fileName))
+                    if(fileName.EndsWith("json"))
                     {
-                        saveFile = SaveFile.Deserialize(input, platform, DeserializeSettings.None);
+                        var data = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveFileJSON>(File.ReadAllText(fileName));
+                        saveFile = data.ToSaveFile();
+                    }
+                    else
+                    {
+                        using (var input = File.OpenRead(fileName))
+                        {
+                            saveFile = SaveFile.Deserialize(input, platform, DeserializeSettings.None);
+                        }
                     }
 
                     try
@@ -364,6 +390,7 @@ namespace Gibbed.Borderlands2.SaveEdit
                         this.CurrencyOnHand.ImportData(saveFile.SaveGame);
                         this.Backpack.ImportData(saveFile.SaveGame, saveFile.Platform);
                         this.Bank.ImportData(saveFile.SaveGame, saveFile.Platform);
+                        this.Reward.ImportData(saveFile.SaveGame, saveFile.Platform);
                         this.FastTravel.ImportData(saveFile.SaveGame);
                         this.SavePath = fileName;
                         this.SaveFile = saveFile;
@@ -596,6 +623,7 @@ namespace Gibbed.Borderlands2.SaveEdit
             this.CurrencyOnHand.ExportData(saveFile.SaveGame);
             this.Backpack.ExportData(saveFile.SaveGame, platform);
             this.Bank.ExportData(saveFile.SaveGame, platform);
+            this.Reward.ExportData(saveFile.SaveGame, platform);
             this.FastTravel.ExportData(saveFile.SaveGame);
 
             if (saveFile.SaveGame != null &&
@@ -621,7 +649,25 @@ namespace Gibbed.Borderlands2.SaveEdit
                 FileFormats.SaveExpansion.AddExpansionSavedataToUnloadableItemData(
                     saveFile.SaveGame);
                 saveFile.Platform = platform;
-                saveFile.Serialize(output);
+                if (savePath.EndsWith("json"))
+                {
+                    var save = new SaveFileJSON();
+                    save.LoadSavedGame(saveFile.SaveGame);
+                    var settings = new JsonSerializerSettings
+                    {
+                        Converters = new[] { new SaveFileJSON.SaveFileJSONFlaotConverter() }
+                    };
+                    var serialized = JsonConvert.SerializeObject(save,Formatting.Indented, settings);
+                    using (var writer = new StreamWriter(output))
+                    {
+                        writer.Write(serialized);
+                    }
+                    
+                }
+                else
+                {
+                    saveFile.Serialize(output);
+                }
                 FileFormats.SaveExpansion
                            .ExtractExpansionSavedataFromUnloadableItemData(
                                saveFile.SaveGame);

@@ -20,6 +20,7 @@
  *    distribution.
  */
 
+using System;
 using System.ComponentModel;
 using ProtoBuf;
 
@@ -115,6 +116,7 @@ namespace Gibbed.Borderlands2.ProtoBufFormats.WillowTwoSave
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #endregion
     }
 }
