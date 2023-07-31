@@ -229,7 +229,7 @@
                                Content="Raw" />
                     </StackPanel>
                 </TabItem.Header>
-                <xctk:PropertyGrid AutoGenerateProperties="False"
+                <xctk:PropertyGrid AutoGenerateProperties="True"
                                    SelectedObject="{Binding Path=SaveFile.SaveGame}"
                                    ShowTitle="False"
                                    IsEnabled="{Binding Path=SaveFile, Converter={StaticResource NullToBooleanConverter1}, ConverterParameter=true}">

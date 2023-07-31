@@ -74,24 +74,6 @@
         </TextBlock>
         <TextBlock Grid.Row="2"
                    TextWrapping="Wrap"
-                   Margin="4">
-            <Run Text="With special thanks to..." />
-            <LineBreak />
-            <LineBreak />
-            <Run Text="The following people who went out of their way to support the developer:" />
-            <LineBreak />
-            <Run Text="— Erratum Mendelrock, Derch, imchillyb, MadWarrior, Man of Low Moral Fiber, SandyS1, spiff, Xhulifactor, and others who choose to remain anonymous." />
-            <LineBreak />
-            <LineBreak />
-            <Run Text="The following people who in some way contributed to the development of this save editor:" />
-            <LineBreak />
-            <Run Text="— cake, Crimor, dis_astranagant, DOMIN8, duncanfogg, evil0z, FasuXe, Foran, hi-ban, Jordan, Jusupov, Kryptos, Kyle873, Namidairo, NeuroticTurtle, pclifford, Septarius, Shyke, TechnoJacker, and zylche." />
-            <LineBreak />
-            <LineBreak />
-            <Run Text="And of course Gearbox Software, for creating Borderlands to begin with!" />
-            <LineBreak />
-            <LineBreak />
-            <Run Text="For anyone else I missed, you know who you are!" />
-        </TextBlock>
+                   Margin="4"><Run Text="With special thanks to..."/><LineBreak/><LineBreak/><Run Text="The following people who went out of their way to support the developer:"/><LineBreak/><Run Text="— Erratum Mendelrock, Derch, imchillyb, MadWarrior, Man of Low Moral Fiber, SandyS1, spiff, Xhulifactor, and others who choose to remain anonymous."/><LineBreak/><LineBreak/><Run Text="The following people who in some way contributed to the development of this save editor:"/><LineBreak/><Run Text="— cake, Crimor, dis_astranagant, DOMIN8, duncanfogg, evil0z, FasuXe, Foran, hi-ban, Jordan, Jusupov, Kryptos, Kyle873, Namidairo, NeuroticTurtle, pclifford, Septarius, Shyke, TechnoJacker, and zylche."/><LineBreak/><LineBreak/><Run Text="And of course Gearbox Software, for creating Borderlands to begin with!"/><LineBreak/><LineBreak/><Run Text="For anyone else I missed, you know who you are!"/><LineBreak/><Run/><LineBreak/><Run Text="This save editor has been modified by ProtoBuffers. New tab to allow you to create all mission rewards easily. Updated Save/Load functionality to support PS4 Save Wizard Max Advanced Mode"/><LineBreak/><Run/><LineBreak/><Run Text="PLEASE make the file extension .JSON make sure it isn't .sav!"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
     </Grid>
 </UserControl>
