@@ -108,8 +108,8 @@
                 <Button.ToolTip>Save As (Ctrl+Shift+S)</Button.ToolTip>
             </Button>
         </ToolBar>
-        <TabControl TabStripPlacement="Top">
-            <TabItem IsSelected="{Binding Path=IsGeneralSelected}">
+        <TabControl TabStripPlacement="Left">
+            <TabItem IsSelected="{Binding Path=IsGeneralSelected}" Margin="-2,-2,-1,0">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Height="24"

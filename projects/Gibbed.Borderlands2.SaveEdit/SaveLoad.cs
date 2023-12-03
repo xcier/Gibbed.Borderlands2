@@ -78,8 +78,8 @@ namespace Gibbed.Borderlands2.SaveEdit
                               .WithDescription("NVIDIA SHIELD Save Files")
                               .AddFilter("sav", this._FilterIndex == 6)
                               .WithDescription("Nintendo Switch Save Files")
-                              .AddFilter("json", this._FilterIndex == 7)
-                              .WithDescription("PC JSON Save Files"))
+                              .AddFilter("*", this._FilterIndex == 7)
+                              .WithDescription("Save Wizard Save Files"))
                 .WithFileDo(s => fileName = s)
                 .WithFilterIndexDo(i => filterIndex = i);
 
@@ -127,7 +127,7 @@ namespace Gibbed.Borderlands2.SaveEdit
                     ffc => ffc.AddFilter("sav", true)
                               .WithDescription("Save Files")
                               .AddFilter("json")
-                              .WithDescription("PC JSON Save Files")
+                              .WithDescription("Save Wizard Save Files")
                               .AddAllFilesFilter())
                 .WithFileDo(s => fileName = s);
 
